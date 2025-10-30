@@ -15,7 +15,7 @@ Norte OS is an integrated digital platform that transforms how Norte Ventures ma
 
 ### Current Pain Points
 
-**For Norte Team (5 people, 130 companies):**
+**For Norte Team (5 people, 130+ companies):**
 - **Reactive Management:** Portfolio health issues discovered too late; no systematic way to identify companies needing attention
 - **Fragmented Communication:** Requests scattered across WhatsApp, email, meetings; information falls through cracks
 - **Manual Data Collection:** Monthly metrics requested ad-hoc via email/calls; inconsistent tracking

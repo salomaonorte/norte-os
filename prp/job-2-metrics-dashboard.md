@@ -7,7 +7,7 @@ Build monthly metric input system with trend dashboards and anonymous peer bench
 - **Standardizes data:** All 130 companies report same metrics (ARR, growth, employee count, runway, churn)
 - **Enables Job 4 & 5:** Foundation for health scoring and AI extraction
 - **Reciprocal value:** Founders get benchmarking insights for sharing data
-- **Success Metric:** 60% of companies input metrics monthly after 3 months
+- **Success Metric:** 30% of companies input metrics monthly after 3 months
 
 ## What
 1. **Metric Input:** Monthly form for 5 core metrics + optional milestones

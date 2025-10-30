@@ -5,14 +5,15 @@ Build Norte team dashboard with health scores, red/green flags, and prioritizati
 
 ## Why
 - **Shift to proactive:** Catch problems before they become critical
-- **Prioritizes effort:** Team knows which 10 companies need attention this week
-- **Success Metric:** Norte intervenes on 3+ red flags proactively in Q1
+- **Prioritizes effort:** Team knows which 5 companies need attention this week
+- **Success Metric:** Norte intervenes on 2+ red flags proactively in Q1
 
 ## What
 1. **Portfolio Grid:** All companies with health scores (0-100), color-coded (Green 80+, Yellow 50-79, Red <50)
 2. **Health Algorithm:** Growth + runway + churn + engagement score, with Z-score analysis
 3. **Flag Detection:** Auto-detect red flags (revenue drop >20%, runway <12mo, growth <1.5 SD below mean)
-4. **Top 10 List:** Daily prioritization based on flags + last contact + runway urgency
+4. **Top 5 List:** Daily prioritization based on flags + last contact + runway urgency
+5. **Highlights List** Self-updating ranking with the top 5 companies.
 
 ## Implementation Blueprint
 

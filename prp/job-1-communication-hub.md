@@ -7,7 +7,7 @@ Build a founder portal with request submission, status tracking, and company pro
 - **Streamlines communication:** Single source of truth for all Norte-founder interactions
 - **Eliminates lost requests:** 100% tracking of founder asks (intros, GTM, hiring, fundraising)
 - **Scales Norte's approach:** 5-person team can manage 130+ companies systematically
-- **Success Metric:** 50% of portfolio submits request in first month
+- **Success Metric:** 35% of portfolio submits request in first month
 
 ## What
 1. **Authentication:** Passwordless email login (magic links)

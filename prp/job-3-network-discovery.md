@@ -7,7 +7,7 @@ Create searchable Norte network directory with one-click intro requests and outc
 - **High value:** Network access is top reason founders want VC partners
 - **Scales intros:** From memory-based to systematic and trackable
 - **Showcases value:** Perks (AWS/NVIDIA/Oracle) and connections visible in one place
-- **Success Metric:** 50+ successful intros in Q1
+- **Success Metric:** 30+ successful intros in Q1
 
 ## What
 1. **Network Directory:** Searchable contacts (Portfolio, LPs, Advisors, Service Providers)
