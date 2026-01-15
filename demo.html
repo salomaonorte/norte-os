@@ -1,0 +1,1205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Norte OS - Portfolio Operating System</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #8b5cf6;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --bg-tertiary: #334155;
+            --text-primary: #f1f5f9;
+            --text-secondary: #cbd5e1;
+            --border: #475569;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, var(--bg-primary) 0%, #1a1f35 100%);
+            color: var(--text-primary);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Header */
+        header {
+            background: rgba(30, 41, 59, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            padding: 1.5rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.75rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        nav {
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav button {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            cursor: pointer;
+            font-size: 0.95rem;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        nav button:hover, nav button.active {
+            color: var(--text-primary);
+            background: var(--bg-tertiary);
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 4rem 0;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
+            border-radius: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #fff, var(--text-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+
+        /* Tabs */
+        .view {
+            display: none;
+        }
+
+        .view.active {
+            display: block;
+        }
+
+        /* Card Styles */
+        .card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.2);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        /* Grid Layouts */
+        .grid {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .grid-2 {
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        }
+
+        .grid-3 {
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(99, 102, 241, 0.4);
+        }
+
+        .btn-secondary {
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+        }
+
+        .btn-secondary:hover {
+            background: var(--border);
+        }
+
+        /* Form Elements */
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.75rem;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 0.5rem;
+            color: var(--text-primary);
+            font-size: 1rem;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+        }
+
+        textarea.form-control {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        select.form-control {
+            cursor: pointer;
+        }
+
+        /* Status Badges */
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .badge-success {
+            background: rgba(16, 185, 129, 0.2);
+            color: var(--success);
+        }
+
+        .badge-warning {
+            background: rgba(245, 158, 11, 0.2);
+            color: var(--warning);
+        }
+
+        .badge-danger {
+            background: rgba(239, 68, 68, 0.2);
+            color: var(--danger);
+        }
+
+        .badge-info {
+            background: rgba(99, 102, 241, 0.2);
+            color: var(--primary);
+        }
+
+        /* Health Score */
+        .health-score {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .health-circle {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.25rem;
+        }
+
+        .health-green {
+            background: rgba(16, 185, 129, 0.2);
+            color: var(--success);
+            border: 3px solid var(--success);
+        }
+
+        .health-yellow {
+            background: rgba(245, 158, 11, 0.2);
+            color: var(--warning);
+            border: 3px solid var(--warning);
+        }
+
+        .health-red {
+            background: rgba(239, 68, 68, 0.2);
+            color: var(--danger);
+            border: 3px solid var(--danger);
+        }
+
+        /* Chart */
+        .chart {
+            height: 300px;
+            background: var(--bg-tertiary);
+            border-radius: 0.5rem;
+            padding: 1rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .chart-bars {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-around;
+            height: 100%;
+            gap: 0.5rem;
+        }
+
+        .bar {
+            flex: 1;
+            background: linear-gradient(180deg, var(--primary), var(--secondary));
+            border-radius: 0.25rem 0.25rem 0 0;
+            position: relative;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .bar:hover {
+            opacity: 0.8;
+        }
+
+        .bar-label {
+            position: absolute;
+            bottom: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            white-space: nowrap;
+        }
+
+        /* Network Card */
+        .network-card {
+            background: var(--bg-tertiary);
+            padding: 1rem;
+            border-radius: 0.75rem;
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .network-card:hover {
+            background: var(--border);
+            transform: translateX(5px);
+        }
+
+        .network-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+
+        .network-info {
+            flex: 1;
+        }
+
+        .network-name {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .network-role {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        /* Request Item */
+        .request-item {
+            background: var(--bg-tertiary);
+            padding: 1.25rem;
+            border-radius: 0.75rem;
+            border-left: 4px solid var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .request-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 0.75rem;
+        }
+
+        .request-title {
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .request-meta {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        /* Company Grid */
+        .company-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .company-tile {
+            background: var(--bg-tertiary);
+            padding: 1rem;
+            border-radius: 0.75rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+
+        .company-tile:hover {
+            transform: scale(1.05);
+            border-color: var(--primary);
+        }
+
+        .company-logo {
+            width: 50px;
+            height: 50px;
+            margin: 0 auto 0.75rem;
+            border-radius: 0.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.25rem;
+        }
+
+        .company-name {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .company-metrics {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        /* Benchmark Display */
+        .benchmark {
+            background: var(--bg-tertiary);
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .benchmark-metric {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .benchmark-bar {
+            height: 40px;
+            background: rgba(99, 102, 241, 0.1);
+            border-radius: 0.5rem;
+            position: relative;
+            margin-bottom: 0.5rem;
+        }
+
+        .benchmark-position {
+            position: absolute;
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding: 0 1rem;
+            font-weight: 600;
+        }
+
+        .benchmark-label {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        /* Perk Card */
+        .perk-card {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(139, 92, 246, 0.1));
+            border: 1px solid var(--primary);
+            padding: 1.25rem;
+            border-radius: 0.75rem;
+            transition: all 0.3s ease;
+        }
+
+        .perk-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3);
+        }
+
+        .perk-provider {
+            font-size: 0.85rem;
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .perk-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .perk-value {
+            font-size: 1.5rem;
+            background: linear-gradient(135deg, var(--success), var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+        }
+
+        .perk-description {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .view.active {
+            animation: fadeIn 0.5s ease;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .stats {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            nav {
+                display: none;
+            }
+
+            .company-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo">⚡ Norte OS</div>
+            <nav>
+                <button class="active" onclick="showView('dashboard')">Dashboard</button>
+                <button onclick="showView('requests')">Requests</button>
+                <button onclick="showView('metrics')">Metrics</button>
+                <button onclick="showView('network')">Network</button>
+                <button onclick="showView('portfolio')">Portfolio Health</button>
+            </nav>
+            <div class="user-info">
+                <span style="color: var(--text-secondary);">Sarah Chen</span>
+                <div class="avatar">SC</div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="hero">
+            <h1>Portfolio Operating System</h1>
+            <p>Transforming portfolio management for Norte Ventures' 130-company ecosystem with AI-powered insights, centralized communication, and data-driven decision making.</p>
+            <div class="stats">
+                <div class="stat">
+                    <div class="stat-value">130</div>
+                    <div class="stat-label">Portfolio Companies</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">87%</div>
+                    <div class="stat-label">Health Score</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">42</div>
+                    <div class="stat-label">Active Requests</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">$2.4B</div>
+                    <div class="stat-label">Portfolio Value</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dashboard View -->
+        <div id="dashboard" class="view active">
+            <div class="grid grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">📋 Recent Requests</h2>
+                        <button class="btn btn-primary" onclick="showView('requests')">View All</button>
+                    </div>
+                    <div class="request-item">
+                        <div class="request-header">
+                            <div>
+                                <div class="request-title">Introduction to Series A Investors</div>
+                                <div class="request-meta">Submitted 2 days ago · TechFlow AI</div>
+                            </div>
+                            <span class="badge badge-warning">In Progress</span>
+                        </div>
+                        <p style="color: var(--text-secondary); font-size: 0.9rem;">Looking for warm intros to top-tier Series A investors focused on AI/ML infrastructure...</p>
+                    </div>
+                    <div class="request-item">
+                        <div class="request-header">
+                            <div>
+                                <div class="request-title">GTM Strategy Review</div>
+                                <div class="request-meta">Submitted 5 days ago · CloudScale</div>
+                            </div>
+                            <span class="badge badge-success">Completed</span>
+                        </div>
+                        <p style="color: var(--text-secondary); font-size: 0.9rem;">Need help refining our go-to-market strategy for enterprise sales...</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">🎁 Available Perks</h2>
+                        <button class="btn btn-secondary" onclick="showView('network')">Explore</button>
+                    </div>
+                    <div class="perk-card" style="margin-bottom: 1rem;">
+                        <div class="perk-provider">NVIDIA</div>
+                        <div class="perk-title">GPU Cloud Credits</div>
+                        <div class="perk-value">$100,000</div>
+                        <div class="perk-description">Access to NVIDIA's GPU cloud for AI/ML workloads. Perfect for training and inference.</div>
+                    </div>
+                    <div class="perk-card">
+                        <div class="perk-provider">AWS</div>
+                        <div class="perk-title">Activate Credits</div>
+                        <div class="perk-value">$100,000</div>
+                        <div class="perk-description">AWS credits plus technical support and architecture review sessions.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">📊 Portfolio Performance</h2>
+                    <div style="display: flex; gap: 1rem;">
+                        <span class="badge badge-success">↑ 12 Growing</span>
+                        <span class="badge badge-warning">⚠ 3 Watch List</span>
+                        <span class="badge badge-danger">🚨 1 Critical</span>
+                    </div>
+                </div>
+                <div class="chart">
+                    <div class="chart-bars">
+                        <div class="bar" style="height: 60%;">
+                            <div class="bar-label">Jan</div>
+                        </div>
+                        <div class="bar" style="height: 70%;">
+                            <div class="bar-label">Feb</div>
+                        </div>
+                        <div class="bar" style="height: 65%;">
+                            <div class="bar-label">Mar</div>
+                        </div>
+                        <div class="bar" style="height: 80%;">
+                            <div class="bar-label">Apr</div>
+                        </div>
+                        <div class="bar" style="height: 85%;">
+                            <div class="bar-label">May</div>
+                        </div>
+                        <div class="bar" style="height: 90%;">
+                            <div class="bar-label">Jun</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Requests View -->
+        <div id="requests" class="view">
+            <div class="grid grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">✉️ Submit New Request</h2>
+                    </div>
+                    <form onsubmit="submitRequest(event)">
+                        <div class="form-group">
+                            <label>Request Type</label>
+                            <select class="form-control">
+                                <option>Introduction Request</option>
+                                <option>GTM Help</option>
+                                <option>Hiring Support</option>
+                                <option>Fundraising Assistance</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Title</label>
+                            <input type="text" class="form-control" placeholder="Brief summary of your request">
+                        </div>
+                        <div class="form-group">
+                            <label>Details</label>
+                            <textarea class="form-control" placeholder="Describe what you need help with..."></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Priority</label>
+                            <select class="form-control">
+                                <option>Normal</option>
+                                <option>Urgent</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">Submit Request</button>
+                    </form>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">📬 Your Requests</h2>
+                    </div>
+                    <div class="request-item">
+                        <div class="request-header">
+                            <div>
+                                <div class="request-title">VP of Engineering Candidate Review</div>
+                                <div class="request-meta">Submitted 1 week ago</div>
+                            </div>
+                            <span class="badge badge-success">Completed</span>
+                        </div>
+                        <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 0.5rem;">Need help evaluating final candidates for VP Engineering role.</p>
+                        <p style="color: var(--success); font-size: 0.85rem;"><strong>Norte Notes:</strong> Connected you with 3 founders who recently hired VPs. Call scheduled.</p>
+                    </div>
+                    <div class="request-item">
+                        <div class="request-header">
+                            <div>
+                                <div class="request-title">Enterprise Customer Intro - Healthcare</div>
+                                <div class="request-meta">Submitted 3 days ago</div>
+                            </div>
+                            <span class="badge badge-warning">In Progress</span>
+                        </div>
+                        <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 0.5rem;">Looking for intros to healthcare systems for pilot program.</p>
+                        <p style="color: var(--warning); font-size: 0.85rem;"><strong>Norte Notes:</strong> Checking with 2 LPs in healthcare. Will update by Friday.</p>
+                    </div>
+                    <div class="request-item">
+                        <div class="request-header">
+                            <div>
+                                <div class="request-title">Series A Pitch Deck Review</div>
+                                <div class="request-meta">Submitted today</div>
+                            </div>
+                            <span class="badge badge-info">Submitted</span>
+                        </div>
+                        <p style="color: var(--text-secondary); font-size: 0.9rem;">Would love feedback on our Series A deck before we start outreach.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Metrics View -->
+        <div id="metrics" class="view">
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">📈 Your Company Metrics</h2>
+                    <button class="btn btn-primary">Update Metrics</button>
+                </div>
+                <div class="grid grid-2">
+                    <div>
+                        <h3 style="margin-bottom: 1rem; color: var(--text-secondary); font-size: 1rem;">Key Metrics (June 2025)</h3>
+                        <div style="background: var(--bg-tertiary); padding: 1.5rem; border-radius: 0.75rem; margin-bottom: 1rem;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                                <span style="color: var(--text-secondary);">Annual Recurring Revenue</span>
+                                <span style="font-size: 1.5rem; font-weight: 700;">$2.4M</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                                <span style="color: var(--text-secondary);">Monthly Growth Rate</span>
+                                <span style="font-size: 1.5rem; font-weight: 700; color: var(--success);">+18%</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                                <span style="color: var(--text-secondary);">Team Size</span>
+                                <span style="font-size: 1.5rem; font-weight: 700;">24</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                                <span style="color: var(--text-secondary);">Runway</span>
+                                <span style="font-size: 1.5rem; font-weight: 700;">18 mo</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <span style="color: var(--text-secondary);">Churn Rate</span>
+                                <span style="font-size: 1.5rem; font-weight: 700;">2.1%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h3 style="margin-bottom: 1rem; color: var(--text-secondary); font-size: 1rem;">Growth Trend (Last 6 Months)</h3>
+                        <div class="chart">
+                            <div class="chart-bars">
+                                <div class="bar" style="height: 50%;">
+                                    <div class="bar-label">Jan</div>
+                                </div>
+                                <div class="bar" style="height: 58%;">
+                                    <div class="bar-label">Feb</div>
+                                </div>
+                                <div class="bar" style="height: 65%;">
+                                    <div class="bar-label">Mar</div>
+                                </div>
+                                <div class="bar" style="height: 72%;">
+                                    <div class="bar-label">Apr</div>
+                                </div>
+                                <div class="bar" style="height: 80%;">
+                                    <div class="bar-label">May</div>
+                                </div>
+                                <div class="bar" style="height: 95%;">
+                                    <div class="bar-label">Jun</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">🎯 Anonymous Benchmarking</h2>
+                    <span class="badge badge-info">Seed Stage · 45 Companies</span>
+                </div>
+
+                <div class="benchmark">
+                    <div class="benchmark-metric">ARR Growth Rate</div>
+                    <div class="benchmark-bar">
+                        <div class="benchmark-position" style="width: 78%;">Top 25% 🎉</div>
+                    </div>
+                    <div class="benchmark-label">You're growing faster than 78% of Seed stage companies</div>
+                </div>
+
+                <div class="benchmark">
+                    <div class="benchmark-metric">Runway</div>
+                    <div class="benchmark-bar">
+                        <div class="benchmark-position" style="width: 65%;">Above Average</div>
+                    </div>
+                    <div class="benchmark-label">You're at 65th percentile for runway among peers</div>
+                </div>
+
+                <div class="benchmark">
+                    <div class="benchmark-metric">Churn Rate</div>
+                    <div class="benchmark-bar">
+                        <div class="benchmark-position" style="width: 85%;">Excellent ⭐</div>
+                    </div>
+                    <div class="benchmark-label">Your churn is lower than 85% of similar companies</div>
+                </div>
+
+                <div class="benchmark">
+                    <div class="benchmark-metric">Team Size Efficiency</div>
+                    <div class="benchmark-bar">
+                        <div class="benchmark-position" style="width: 72%;">Top 30%</div>
+                    </div>
+                    <div class="benchmark-label">Strong revenue per employee compared to peers</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Network View -->
+        <div id="network" class="view">
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">🌐 Norte Network Directory</h2>
+                    <div style="display: flex; gap: 1rem;">
+                        <input type="text" class="form-control" placeholder="Search by name, company, or expertise..." style="max-width: 400px;">
+                        <select class="form-control" style="max-width: 200px;">
+                            <option>All Categories</option>
+                            <option>Portfolio Companies</option>
+                            <option>Limited Partners</option>
+                            <option>Advisors</option>
+                            <option>Service Providers</option>
+                        </select>
+                    </div>
+                </div>
+
+                <h3 style="margin: 1.5rem 0 1rem; color: var(--text-secondary); font-size: 1rem;">⭐ Featured Connections</h3>
+                <div class="grid grid-2">
+                    <div class="network-card">
+                        <div class="network-avatar">JK</div>
+                        <div class="network-info">
+                            <div class="network-name">Jessica Kim</div>
+                            <div class="network-role">Partner @ Sequoia Capital · AI/ML Expert</div>
+                        </div>
+                        <button class="btn btn-primary">Request Intro</button>
+                    </div>
+                    <div class="network-card">
+                        <div class="network-avatar">MR</div>
+                        <div class="network-info">
+                            <div class="network-name">Marcus Rodriguez</div>
+                            <div class="network-role">CEO @ DataFlow · Norte Portfolio</div>
+                        </div>
+                        <button class="btn btn-primary">Request Intro</button>
+                    </div>
+                    <div class="network-card">
+                        <div class="network-avatar">SL</div>
+                        <div class="network-info">
+                            <div class="network-name">Sarah Liu</div>
+                            <div class="network-role">VP Engineering @ Google Cloud · Advisor</div>
+                        </div>
+                        <button class="btn btn-primary">Request Intro</button>
+                    </div>
+                    <div class="network-card">
+                        <div class="network-avatar">DP</div>
+                        <div class="network-info">
+                            <div class="network-name">David Park</div>
+                            <div class="network-role">Founder @ TechScale · GTM Expert</div>
+                        </div>
+                        <button class="btn btn-primary">Request Intro</button>
+                    </div>
+                </div>
+
+                <h3 style="margin: 2rem 0 1rem; color: var(--text-secondary); font-size: 1rem;">🎁 Exclusive Perks</h3>
+                <div class="grid grid-3">
+                    <div class="perk-card">
+                        <div class="perk-provider">NVIDIA</div>
+                        <div class="perk-title">GPU Cloud Credits</div>
+                        <div class="perk-value">$100,000</div>
+                        <div class="perk-description">Access to NVIDIA's GPU cloud for AI/ML workloads.</div>
+                        <button class="btn btn-secondary" style="width: 100%; margin-top: 1rem;">Claim Perk</button>
+                    </div>
+                    <div class="perk-card">
+                        <div class="perk-provider">AWS</div>
+                        <div class="perk-title">Activate Credits</div>
+                        <div class="perk-value">$100,000</div>
+                        <div class="perk-description">AWS credits plus technical support sessions.</div>
+                        <button class="btn btn-secondary" style="width: 100%; margin-top: 1rem;">Claim Perk</button>
+                    </div>
+                    <div class="perk-card">
+                        <div class="perk-provider">Oracle Cloud</div>
+                        <div class="perk-title">Infrastructure Credits</div>
+                        <div class="perk-value">$50,000</div>
+                        <div class="perk-description">Oracle Cloud credits for compute and storage.</div>
+                        <button class="btn btn-secondary" style="width: 100%; margin-top: 1rem;">Claim Perk</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Portfolio Health View (Norte Team Only) -->
+        <div id="portfolio" class="view">
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">🏥 Portfolio Health Dashboard</h2>
+                    <div style="display: flex; gap: 1rem; align-items: center;">
+                        <select class="form-control" style="max-width: 200px;">
+                            <option>All Companies</option>
+                            <option>Critical (Score < 50)</option>
+                            <option>Watch List (50-79)</option>
+                            <option>Healthy (80+)</option>
+                        </select>
+                        <select class="form-control" style="max-width: 200px;">
+                            <option>All Stages</option>
+                            <option>Pre-seed</option>
+                            <option>Seed</option>
+                            <option>Series A</option>
+                            <option>Series B+</option>
+                        </select>
+                    </div>
+                </div>
+
+                <h3 style="margin: 1.5rem 0 1rem; color: var(--danger); font-size: 1rem;">🚨 Top Priority - Needs Attention</h3>
+                <div class="grid grid-2">
+                    <div class="card" style="border-left: 4px solid var(--danger);">
+                        <div style="display: flex; gap: 1rem; align-items: start;">
+                            <div class="health-score">
+                                <div class="health-circle health-red">42</div>
+                            </div>
+                            <div style="flex: 1;">
+                                <h3 style="font-size: 1.25rem; margin-bottom: 0.5rem;">CloudSync Pro</h3>
+                                <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1rem;">Seed · Enterprise SaaS · 12 employees</p>
+                                <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1rem;">
+                                    <span class="badge badge-danger">Revenue ↓ 25%</span>
+                                    <span class="badge badge-danger">Runway: 8 mo</span>
+                                    <span class="badge badge-warning">Churn spike</span>
+                                </div>
+                                <p style="font-size: 0.9rem;"><strong>Suggested Action:</strong> Schedule urgent call to discuss runway extension options and customer retention strategy.</p>
+                                <p style="color: var(--text-secondary); font-size: 0.85rem; margin-top: 0.5rem;">Last contact: 18 days ago</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card" style="border-left: 4px solid var(--warning);">
+                        <div style="display: flex; gap: 1rem; align-items: start;">
+                            <div class="health-score">
+                                <div class="health-circle health-yellow">58</div>
+                            </div>
+                            <div style="flex: 1;">
+                                <h3 style="font-size: 1.25rem; margin-bottom: 0.5rem;">DataWave Analytics</h3>
+                                <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1rem;">Series A · Data Platform · 34 employees</p>
+                                <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1rem;">
+                                    <span class="badge badge-warning">Growth slowing</span>
+                                    <span class="badge badge-info">Fundraising</span>
+                                </div>
+                                <p style="font-size: 0.9rem;"><strong>Suggested Action:</strong> Offer investor intros and help refine fundraising materials.</p>
+                                <p style="color: var(--text-secondary); font-size: 0.85rem; margin-top: 0.5rem;">Last contact: 7 days ago</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 style="margin: 2rem 0 1rem; color: var(--success); font-size: 1rem;">🎉 Top Performers</h3>
+                <div class="grid grid-3">
+                    <div class="card" style="border-left: 4px solid var(--success);">
+                        <div class="health-score">
+                            <div class="health-circle health-green">94</div>
+                            <div style="flex: 1;">
+                                <h4 style="margin-bottom: 0.25rem;">TechFlow AI</h4>
+                                <p style="color: var(--text-secondary); font-size: 0.85rem;">Seed · AI Platform</p>
+                            </div>
+                        </div>
+                        <p style="margin-top: 1rem; font-size: 0.9rem;"><strong>ARR:</strong> $3.2M (+45% MoM)</p>
+                        <span class="badge badge-success" style="margin-top: 0.5rem;">Growth 2.1 SD above mean 🚀</span>
+                    </div>
+
+                    <div class="card" style="border-left: 4px solid var(--success);">
+                        <div class="health-score">
+                            <div class="health-circle health-green">91</div>
+                            <div style="flex: 1;">
+                                <h4 style="margin-bottom: 0.25rem;">SecureNet</h4>
+                                <p style="color: var(--text-secondary); font-size: 0.85rem;">Series A · Cybersecurity</p>
+                            </div>
+                        </div>
+                        <p style="margin-top: 1rem; font-size: 0.9rem;"><strong>ARR:</strong> $8.5M (+32% MoM)</p>
+                        <span class="badge badge-success" style="margin-top: 0.5rem;">Just closed $15M Series A 🎊</span>
+                    </div>
+
+                    <div class="card" style="border-left: 4px solid var(--success);">
+                        <div class="health-score">
+                            <div class="health-circle health-green">89</div>
+                            <div style="flex: 1;">
+                                <h4 style="margin-bottom: 0.25rem;">FinFlow</h4>
+                                <p style="color: var(--text-secondary); font-size: 0.85rem;">Seed · FinTech</p>
+                            </div>
+                        </div>
+                        <p style="margin-top: 1rem; font-size: 0.9rem;"><strong>ARR:</strong> $1.8M (+28% MoM)</p>
+                        <span class="badge badge-success" style="margin-top: 0.5rem;">Hit profitability ✨</span>
+                    </div>
+                </div>
+
+                <h3 style="margin: 2rem 0 1rem; color: var(--text-secondary); font-size: 1rem;">📊 All Portfolio Companies</h3>
+                <div class="company-grid">
+                    <div class="company-tile">
+                        <div class="company-logo">TF</div>
+                        <div class="company-name">TechFlow AI</div>
+                        <div class="health-circle health-green" style="width: 40px; height: 40px; font-size: 0.9rem; margin: 0.5rem auto;">94</div>
+                        <div class="company-metrics">$3.2M ARR · +45%</div>
+                    </div>
+                    <div class="company-tile">
+                        <div class="company-logo">SN</div>
+                        <div class="company-name">SecureNet</div>
+                        <div class="health-circle health-green" style="width: 40px; height: 40px; font-size: 0.9rem; margin: 0.5rem auto;">91</div>
+                        <div class="company-metrics">$8.5M ARR · +32%</div>
+                    </div>
+                    <div class="company-tile">
+                        <div class="company-logo">FF</div>
+                        <div class="company-name">FinFlow</div>
+                        <div class="health-circle health-green" style="width: 40px; height: 40px; font-size: 0.9rem; margin: 0.5rem auto;">89</div>
+                        <div class="company-metrics">$1.8M ARR · +28%</div>
+                    </div>
+                    <div class="company-tile">
+                        <div class="company-logo">CS</div>
+                        <div class="company-name">CloudScale</div>
+                        <div class="health-circle health-green" style="width: 40px; height: 40px; font-size: 0.9rem; margin: 0.5rem auto;">86</div>
+                        <div class="company-metrics">$5.2M ARR · +22%</div>
+                    </div>
+                    <div class="company-tile">
+                        <div class="company-logo">AL</div>
+                        <div class="company-name">AutoLabs</div>
+                        <div class="health-circle health-green" style="width: 40px; height: 40px; font-size: 0.9rem; margin: 0.5rem auto;">82</div>
+                        <div class="company-metrics">$2.1M ARR · +18%</div>
+                    </div>
+                    <div class="company-tile">
+                        <div class="company-logo">MW</div>
+                        <div class="company-name">MediaWave</div>
+                        <div class="health-circle health-yellow" style="width: 40px; height: 40px; font-size: 0.9rem; margin: 0.5rem auto;">72</div>
+                        <div class="company-metrics">$1.5M ARR · +12%</div>
+                    </div>
+                    <div class="company-tile">
+                        <div class="company-logo">DW</div>
+                        <div class="company-name">DataWave</div>
+                        <div class="health-circle health-yellow" style="width: 40px; height: 40px; font-size: 0.9rem; margin: 0.5rem auto;">58</div>
+                        <div class="company-metrics">$4.2M ARR · +8%</div>
+                    </div>
+                    <div class="company-tile">
+                        <div class="company-logo">CP</div>
+                        <div class="company-name">CloudSync Pro</div>
+                        <div class="health-circle health-red" style="width: 40px; height: 40px; font-size: 0.9rem; margin: 0.5rem auto;">42</div>
+                        <div class="company-metrics">$890K ARR · -25%</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showView(viewId) {
+            // Hide all views
+            document.querySelectorAll('.view').forEach(view => {
+                view.classList.remove('active');
+            });
+
+            // Show selected view
+            document.getElementById(viewId).classList.add('active');
+
+            // Update nav buttons
+            document.querySelectorAll('nav button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function submitRequest(event) {
+            event.preventDefault();
+            alert('Request submitted successfully! ✅\n\nThe Norte team will review your request and respond within 24 hours.');
+            event.target.reset();
+        }
+
+        // Add hover effect to charts
+        document.querySelectorAll('.bar').forEach(bar => {
+            bar.addEventListener('mouseenter', function() {
+                const label = this.querySelector('.bar-label').textContent;
+                const height = parseInt(this.style.height);
+                console.log(`${label}: ${height}% growth`);
+            });
+        });
+
+        // Simulate real-time updates
+        setInterval(() => {
+            const statValue = document.querySelector('.stat-value');
+            if (statValue && Math.random() > 0.95) {
+                statValue.style.transform = 'scale(1.1)';
+                setTimeout(() => {
+                    statValue.style.transform = 'scale(1)';
+                }, 300);
+            }
+        }, 2000);
+    </script>
+</body>
+</html>
