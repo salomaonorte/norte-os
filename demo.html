@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Norte OS - Portfolio Operating System</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -12,26 +15,33 @@
         }
 
         :root {
-            --primary: #6366f1;
-            --primary-dark: #4f46e5;
-            --secondary: #8b5cf6;
-            --success: #10b981;
-            --warning: #f59e0b;
-            --danger: #ef4444;
-            --bg-primary: #0f172a;
-            --bg-secondary: #1e293b;
-            --bg-tertiary: #334155;
-            --text-primary: #f1f5f9;
-            --text-secondary: #cbd5e1;
-            --border: #475569;
+            --primary: #D4AF37;
+            --primary-dark: #B8960C;
+            --primary-light: #E5C87C;
+            --black: #0a0a0a;
+            --success: #2E7D32;
+            --warning: #D4AF37;
+            --danger: #C62828;
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f8f8;
+            --bg-tertiary: #f0f0f0;
+            --bg-dark: #0a0a0a;
+            --text-primary: #0a0a0a;
+            --text-secondary: #555555;
+            --text-muted: #888888;
+            --text-light: #ffffff;
+            --border: #e0e0e0;
+            --border-dark: #333333;
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            background: linear-gradient(135deg, var(--bg-primary) 0%, #1a1f35 100%);
+            font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg-primary);
             color: var(--text-primary);
             min-height: 100vh;
             overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
         .container {
@@ -42,10 +52,8 @@
 
         /* Header */
         header {
-            background: rgba(30, 41, 59, 0.8);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--border);
-            padding: 1.5rem 0;
+            background: var(--bg-dark);
+            padding: 0;
             position: sticky;
             top: 0;
             z-index: 100;
@@ -54,109 +62,131 @@
         .header-content {
             max-width: 1400px;
             margin: 0 auto;
-            padding: 0 2rem;
+            padding: 0;
             display: flex;
-            justify-content: space-between;
-            align-items: center;
+            align-items: stretch;
         }
 
         .logo {
-            font-size: 1.75rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-light);
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1.25rem 2rem;
+        }
+
+        .logo-icon {
+            font-size: 1.5rem;
+            color: var(--primary);
         }
 
         nav {
             display: flex;
-            gap: 2rem;
+            margin-left: auto;
         }
 
         nav button {
             background: none;
             border: none;
-            color: var(--text-secondary);
+            color: var(--text-light);
             cursor: pointer;
-            font-size: 0.95rem;
-            font-weight: 500;
-            padding: 0.5rem 1rem;
-            border-radius: 0.5rem;
-            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            font-weight: 400;
+            padding: 1.25rem 2rem;
+            transition: all 0.2s ease;
+            letter-spacing: 0.02em;
         }
 
-        nav button:hover, nav button.active {
-            color: var(--text-primary);
-            background: var(--bg-tertiary);
+        nav button:hover {
+            background: var(--primary);
+            color: var(--bg-dark);
+        }
+
+        nav button.active {
+            background: var(--primary);
+            color: var(--bg-dark);
         }
 
         .user-info {
             display: flex;
             align-items: center;
             gap: 1rem;
+            padding: 0 2rem;
+        }
+
+        .user-info span {
+            color: var(--text-muted);
+            font-size: 0.85rem;
         }
 
         .avatar {
-            width: 40px;
-            height: 40px;
+            width: 36px;
+            height: 36px;
             border-radius: 50%;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            background: var(--primary);
+            color: var(--bg-dark);
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: 600;
+            font-size: 0.8rem;
         }
 
         /* Hero Section */
         .hero {
-            text-align: center;
+            text-align: left;
             padding: 4rem 0;
-            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
-            border-radius: 1rem;
             margin-bottom: 3rem;
+            border-bottom: 1px solid var(--border);
         }
 
         .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, #fff, var(--text-secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            font-size: 2.5rem;
+            font-weight: 400;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+            line-height: 1.3;
+        }
+
+        .hero h1 span {
+            color: var(--primary);
+            text-decoration: underline;
+            text-underline-offset: 4px;
         }
 
         .hero p {
-            font-size: 1.25rem;
+            font-size: 1.1rem;
             color: var(--text-secondary);
-            max-width: 800px;
-            margin: 0 auto 2rem;
+            max-width: 600px;
+            margin-bottom: 3rem;
+            line-height: 1.7;
         }
 
         .stats {
             display: flex;
-            justify-content: center;
-            gap: 3rem;
-            margin-top: 2rem;
+            gap: 4rem;
         }
 
         .stat {
-            text-align: center;
+            text-align: left;
         }
 
         .stat-value {
             font-size: 2.5rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            font-weight: 300;
+            color: var(--text-primary);
         }
 
         .stat-label {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            margin-top: 0.5rem;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            margin-top: 0.25rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
         }
 
         /* Tabs */
@@ -170,17 +200,15 @@
 
         /* Card Styles */
         .card {
-            background: var(--bg-secondary);
+            background: var(--bg-primary);
             border: 1px solid var(--border);
-            border-radius: 1rem;
-            padding: 1.5rem;
+            padding: 2rem;
             margin-bottom: 1.5rem;
-            transition: all 0.3s ease;
+            transition: all 0.2s ease;
         }
 
         .card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.2);
+            border-color: var(--primary);
         }
 
         .card-header {
@@ -191,8 +219,11 @@
         }
 
         .card-title {
-            font-size: 1.5rem;
-            font-weight: 600;
+            font-size: 1.1rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-primary);
         }
 
         /* Grid Layouts */
@@ -212,31 +243,35 @@
         /* Buttons */
         .btn {
             padding: 0.75rem 1.5rem;
-            border-radius: 0.5rem;
             border: none;
-            font-weight: 600;
+            font-weight: 500;
             cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 0.95rem;
+            transition: all 0.2s ease;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-family: inherit;
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
+            background: var(--bg-dark);
+            color: var(--text-light);
         }
 
         .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(99, 102, 241, 0.4);
+            background: var(--primary);
+            color: var(--bg-dark);
         }
 
         .btn-secondary {
-            background: var(--bg-tertiary);
+            background: transparent;
             color: var(--text-primary);
+            border: 1px solid var(--border);
         }
 
         .btn-secondary:hover {
-            background: var(--border);
+            border-color: var(--primary);
+            color: var(--primary);
         }
 
         /* Form Elements */
@@ -248,23 +283,23 @@
             display: block;
             margin-bottom: 0.5rem;
             color: var(--text-secondary);
-            font-weight: 500;
+            font-weight: 400;
+            font-size: 0.9rem;
         }
 
         .form-control {
             width: 100%;
-            padding: 0.75rem;
-            background: var(--bg-tertiary);
+            padding: 0.875rem 1rem;
+            background: var(--bg-primary);
             border: 1px solid var(--border);
-            border-radius: 0.5rem;
             color: var(--text-primary);
-            font-size: 1rem;
+            font-size: 0.95rem;
+            font-family: inherit;
         }
 
         .form-control:focus {
             outline: none;
             border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
         }
 
         textarea.form-control {
@@ -279,30 +314,31 @@
         /* Status Badges */
         .badge {
             display: inline-block;
-            padding: 0.25rem 0.75rem;
-            border-radius: 9999px;
-            font-size: 0.85rem;
-            font-weight: 600;
+            padding: 0.35rem 0.75rem;
+            font-size: 0.75rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
         }
 
         .badge-success {
-            background: rgba(16, 185, 129, 0.2);
-            color: var(--success);
+            background: var(--success);
+            color: white;
         }
 
         .badge-warning {
-            background: rgba(245, 158, 11, 0.2);
-            color: var(--warning);
+            background: var(--warning);
+            color: var(--bg-dark);
         }
 
         .badge-danger {
-            background: rgba(239, 68, 68, 0.2);
-            color: var(--danger);
+            background: var(--danger);
+            color: white;
         }
 
         .badge-info {
-            background: rgba(99, 102, 241, 0.2);
-            color: var(--primary);
+            background: var(--bg-dark);
+            color: var(--text-light);
         }
 
         /* Health Score */
@@ -315,40 +351,40 @@
         .health-circle {
             width: 60px;
             height: 60px;
-            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-weight: 700;
+            font-weight: 600;
             font-size: 1.25rem;
+            border: 2px solid;
         }
 
         .health-green {
-            background: rgba(16, 185, 129, 0.2);
+            background: transparent;
             color: var(--success);
-            border: 3px solid var(--success);
+            border-color: var(--success);
         }
 
         .health-yellow {
-            background: rgba(245, 158, 11, 0.2);
+            background: transparent;
             color: var(--warning);
-            border: 3px solid var(--warning);
+            border-color: var(--warning);
         }
 
         .health-red {
-            background: rgba(239, 68, 68, 0.2);
+            background: transparent;
             color: var(--danger);
-            border: 3px solid var(--danger);
+            border-color: var(--danger);
         }
 
         /* Chart */
         .chart {
             height: 300px;
-            background: var(--bg-tertiary);
-            border-radius: 0.5rem;
-            padding: 1rem;
+            background: var(--bg-secondary);
+            padding: 1.5rem;
             position: relative;
             overflow: hidden;
+            border: 1px solid var(--border);
         }
 
         .chart-bars {
@@ -356,20 +392,19 @@
             align-items: flex-end;
             justify-content: space-around;
             height: 100%;
-            gap: 0.5rem;
+            gap: 1rem;
         }
 
         .bar {
             flex: 1;
-            background: linear-gradient(180deg, var(--primary), var(--secondary));
-            border-radius: 0.25rem 0.25rem 0 0;
+            background: var(--bg-dark);
             position: relative;
-            transition: all 0.3s ease;
+            transition: all 0.2s ease;
             cursor: pointer;
         }
 
         .bar:hover {
-            opacity: 0.8;
+            background: var(--primary);
         }
 
         .bar-label {
@@ -378,35 +413,35 @@
             left: 50%;
             transform: translateX(-50%);
             font-size: 0.75rem;
-            color: var(--text-secondary);
+            color: var(--text-muted);
             white-space: nowrap;
         }
 
         /* Network Card */
         .network-card {
-            background: var(--bg-tertiary);
-            padding: 1rem;
-            border-radius: 0.75rem;
+            background: var(--bg-secondary);
+            padding: 1.25rem;
             display: flex;
             gap: 1rem;
             align-items: center;
-            transition: all 0.3s ease;
+            transition: all 0.2s ease;
+            border: 1px solid var(--border);
         }
 
         .network-card:hover {
-            background: var(--border);
-            transform: translateX(5px);
+            border-color: var(--primary);
         }
 
         .network-avatar {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            width: 48px;
+            height: 48px;
+            background: var(--bg-dark);
+            color: var(--text-light);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-weight: 600;
+            font-weight: 500;
+            font-size: 0.9rem;
             flex-shrink: 0;
         }
 
@@ -415,21 +450,20 @@
         }
 
         .network-name {
-            font-weight: 600;
+            font-weight: 500;
             margin-bottom: 0.25rem;
         }
 
         .network-role {
             font-size: 0.85rem;
-            color: var(--text-secondary);
+            color: var(--text-muted);
         }
 
         /* Request Item */
         .request-item {
-            background: var(--bg-tertiary);
-            padding: 1.25rem;
-            border-radius: 0.75rem;
-            border-left: 4px solid var(--primary);
+            background: var(--bg-secondary);
+            padding: 1.5rem;
+            border-left: 3px solid var(--primary);
             margin-bottom: 1rem;
         }
 
@@ -441,79 +475,79 @@
         }
 
         .request-title {
-            font-weight: 600;
-            font-size: 1.1rem;
+            font-weight: 500;
+            font-size: 1rem;
             margin-bottom: 0.25rem;
         }
 
         .request-meta {
-            font-size: 0.85rem;
-            color: var(--text-secondary);
+            font-size: 0.8rem;
+            color: var(--text-muted);
         }
 
         /* Company Grid */
         .company-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
             gap: 1rem;
         }
 
         .company-tile {
-            background: var(--bg-tertiary);
-            padding: 1rem;
-            border-radius: 0.75rem;
+            background: var(--bg-secondary);
+            padding: 1.5rem 1rem;
             text-align: center;
-            transition: all 0.3s ease;
+            transition: all 0.2s ease;
             cursor: pointer;
-            border: 2px solid transparent;
+            border: 1px solid var(--border);
         }
 
         .company-tile:hover {
-            transform: scale(1.05);
             border-color: var(--primary);
         }
 
         .company-logo {
-            width: 50px;
-            height: 50px;
+            width: 48px;
+            height: 48px;
             margin: 0 auto 0.75rem;
-            border-radius: 0.5rem;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            background: var(--bg-dark);
+            color: var(--text-light);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-weight: 700;
-            font-size: 1.25rem;
+            font-weight: 500;
+            font-size: 0.9rem;
         }
 
         .company-name {
-            font-weight: 600;
+            font-weight: 500;
             margin-bottom: 0.5rem;
+            font-size: 0.95rem;
         }
 
         .company-metrics {
             font-size: 0.8rem;
-            color: var(--text-secondary);
+            color: var(--text-muted);
         }
 
         /* Benchmark Display */
         .benchmark {
-            background: var(--bg-tertiary);
+            background: var(--bg-secondary);
             padding: 1.5rem;
-            border-radius: 0.75rem;
             margin-bottom: 1rem;
+            border: 1px solid var(--border);
         }
 
         .benchmark-metric {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             color: var(--text-secondary);
             margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
         }
 
         .benchmark-bar {
             height: 40px;
-            background: rgba(99, 102, 241, 0.1);
-            border-radius: 0.5rem;
+            background: var(--bg-tertiary);
             position: relative;
             margin-bottom: 0.5rem;
         }
@@ -521,87 +555,105 @@
         .benchmark-position {
             position: absolute;
             height: 100%;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-            border-radius: 0.5rem;
+            background: var(--bg-dark);
             display: flex;
             align-items: center;
             justify-content: flex-end;
             padding: 0 1rem;
-            font-weight: 600;
+            font-weight: 500;
+            color: var(--text-light);
+            font-size: 0.85rem;
         }
 
         .benchmark-label {
-            font-size: 0.85rem;
-            color: var(--text-secondary);
+            font-size: 0.8rem;
+            color: var(--text-muted);
         }
 
         /* Perk Card */
         .perk-card {
-            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(139, 92, 246, 0.1));
-            border: 1px solid var(--primary);
-            padding: 1.25rem;
-            border-radius: 0.75rem;
-            transition: all 0.3s ease;
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            padding: 1.5rem;
+            transition: all 0.2s ease;
         }
 
         .perk-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3);
+            border-color: var(--primary);
         }
 
         .perk-provider {
-            font-size: 0.85rem;
+            font-size: 0.75rem;
             color: var(--primary);
-            font-weight: 600;
+            font-weight: 500;
             margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
         }
 
         .perk-title {
-            font-size: 1.25rem;
-            font-weight: 700;
+            font-size: 1.1rem;
+            font-weight: 500;
             margin-bottom: 0.5rem;
         }
 
         .perk-value {
-            font-size: 1.5rem;
-            background: linear-gradient(135deg, var(--success), var(--primary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            font-weight: 700;
+            font-size: 1.75rem;
+            color: var(--text-primary);
+            font-weight: 300;
             margin-bottom: 0.75rem;
         }
 
         .perk-description {
-            color: var(--text-secondary);
+            color: var(--text-muted);
             font-size: 0.9rem;
+            line-height: 1.5;
         }
 
         /* Animations */
         @keyframes fadeIn {
             from {
                 opacity: 0;
-                transform: translateY(20px);
             }
             to {
                 opacity: 1;
-                transform: translateY(0);
             }
         }
 
         .view.active {
-            animation: fadeIn 0.5s ease;
+            animation: fadeIn 0.3s ease;
+        }
+
+        /* Section headers */
+        .section-title {
+            font-size: 0.85rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+            margin: 2rem 0 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .section-title::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--primary);
+            border-radius: 50%;
         }
 
         /* Responsive */
         @media (max-width: 768px) {
             .hero h1 {
-                font-size: 2rem;
+                font-size: 1.75rem;
             }
 
             .stats {
-                flex-direction: column;
-                gap: 1.5rem;
+                flex-wrap: wrap;
+                gap: 2rem;
             }
 
             nav {
@@ -609,7 +661,7 @@
             }
 
             .company-grid {
-                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
             }
         }
     </style>
@@ -617,16 +669,19 @@
 <body>
     <header>
         <div class="header-content">
-            <div class="logo">⚡ Norte OS</div>
+            <div class="logo">
+                <span class="logo-icon">↗</span>
+                NORTE
+            </div>
             <nav>
                 <button class="active" onclick="showView('dashboard')">Dashboard</button>
                 <button onclick="showView('requests')">Requests</button>
                 <button onclick="showView('metrics')">Metrics</button>
                 <button onclick="showView('network')">Network</button>
-                <button onclick="showView('portfolio')">Portfolio Health</button>
+                <button onclick="showView('portfolio')">Portfolio</button>
             </nav>
             <div class="user-info">
-                <span style="color: var(--text-secondary);">Sarah Chen</span>
+                <span>Sarah Chen</span>
                 <div class="avatar">SC</div>
             </div>
         </div>
@@ -634,8 +689,8 @@
 
     <div class="container">
         <div class="hero">
-            <h1>Portfolio Operating System</h1>
-            <p>Transforming portfolio management for Norte Ventures' 130-company ecosystem with AI-powered insights, centralized communication, and data-driven decision making.</p>
+            <h1>We believe in building a <span>proactive portfolio</span></h1>
+            <p>Transforming portfolio management for Norte Ventures' 130-company ecosystem with centralized communication, data-driven insights, and founder-first tools.</p>
             <div class="stats">
                 <div class="stat">
                     <div class="stat-value">130</div>
@@ -661,7 +716,7 @@
             <div class="grid grid-2">
                 <div class="card">
                     <div class="card-header">
-                        <h2 class="card-title">📋 Recent Requests</h2>
+                        <h2 class="card-title">Recent Requests</h2>
                         <button class="btn btn-primary" onclick="showView('requests')">View All</button>
                     </div>
                     <div class="request-item">
@@ -688,7 +743,7 @@
 
                 <div class="card">
                     <div class="card-header">
-                        <h2 class="card-title">🎁 Available Perks</h2>
+                        <h2 class="card-title">Available Perks</h2>
                         <button class="btn btn-secondary" onclick="showView('network')">Explore</button>
                     </div>
                     <div class="perk-card" style="margin-bottom: 1rem;">
@@ -708,11 +763,11 @@
 
             <div class="card">
                 <div class="card-header">
-                    <h2 class="card-title">📊 Portfolio Performance</h2>
+                    <h2 class="card-title">Portfolio Performance</h2>
                     <div style="display: flex; gap: 1rem;">
-                        <span class="badge badge-success">↑ 12 Growing</span>
-                        <span class="badge badge-warning">⚠ 3 Watch List</span>
-                        <span class="badge badge-danger">🚨 1 Critical</span>
+                        <span class="badge badge-success">12 Growing</span>
+                        <span class="badge badge-warning">3 Watch List</span>
+                        <span class="badge badge-danger">1 Critical</span>
                     </div>
                 </div>
                 <div class="chart">
@@ -745,7 +800,7 @@
             <div class="grid grid-2">
                 <div class="card">
                     <div class="card-header">
-                        <h2 class="card-title">✉️ Submit New Request</h2>
+                        <h2 class="card-title">Submit New Request</h2>
                     </div>
                     <form onsubmit="submitRequest(event)">
                         <div class="form-group">
@@ -779,7 +834,7 @@
 
                 <div class="card">
                     <div class="card-header">
-                        <h2 class="card-title">📬 Your Requests</h2>
+                        <h2 class="card-title">Your Requests</h2>
                     </div>
                     <div class="request-item">
                         <div class="request-header">
@@ -821,7 +876,7 @@
         <div id="metrics" class="view">
             <div class="card">
                 <div class="card-header">
-                    <h2 class="card-title">📈 Your Company Metrics</h2>
+                    <h2 class="card-title">Your Company Metrics</h2>
                     <button class="btn btn-primary">Update Metrics</button>
                 </div>
                 <div class="grid grid-2">
@@ -881,14 +936,14 @@
 
             <div class="card">
                 <div class="card-header">
-                    <h2 class="card-title">🎯 Anonymous Benchmarking</h2>
+                    <h2 class="card-title">Anonymous Benchmarking</h2>
                     <span class="badge badge-info">Seed Stage · 45 Companies</span>
                 </div>
 
                 <div class="benchmark">
                     <div class="benchmark-metric">ARR Growth Rate</div>
                     <div class="benchmark-bar">
-                        <div class="benchmark-position" style="width: 78%;">Top 25% 🎉</div>
+                        <div class="benchmark-position" style="width: 78%;">Top 25%</div>
                     </div>
                     <div class="benchmark-label">You're growing faster than 78% of Seed stage companies</div>
                 </div>
@@ -904,7 +959,7 @@
                 <div class="benchmark">
                     <div class="benchmark-metric">Churn Rate</div>
                     <div class="benchmark-bar">
-                        <div class="benchmark-position" style="width: 85%;">Excellent ⭐</div>
+                        <div class="benchmark-position" style="width: 85%;">Excellent</div>
                     </div>
                     <div class="benchmark-label">Your churn is lower than 85% of similar companies</div>
                 </div>
@@ -923,7 +978,7 @@
         <div id="network" class="view">
             <div class="card">
                 <div class="card-header">
-                    <h2 class="card-title">🌐 Norte Network Directory</h2>
+                    <h2 class="card-title">Norte Network Directory</h2>
                     <div style="display: flex; gap: 1rem;">
                         <input type="text" class="form-control" placeholder="Search by name, company, or expertise..." style="max-width: 400px;">
                         <select class="form-control" style="max-width: 200px;">
@@ -936,7 +991,7 @@
                     </div>
                 </div>
 
-                <h3 style="margin: 1.5rem 0 1rem; color: var(--text-secondary); font-size: 1rem;">⭐ Featured Connections</h3>
+                <h3 style="margin: 1.5rem 0 1rem; color: var(--text-secondary); font-size: 1rem;">Featured Connections</h3>
                 <div class="grid grid-2">
                     <div class="network-card">
                         <div class="network-avatar">JK</div>
@@ -972,7 +1027,7 @@
                     </div>
                 </div>
 
-                <h3 style="margin: 2rem 0 1rem; color: var(--text-secondary); font-size: 1rem;">🎁 Exclusive Perks</h3>
+                <h3 style="margin: 2rem 0 1rem; color: var(--text-secondary); font-size: 1rem;">Exclusive Perks</h3>
                 <div class="grid grid-3">
                     <div class="perk-card">
                         <div class="perk-provider">NVIDIA</div>
@@ -1003,7 +1058,7 @@
         <div id="portfolio" class="view">
             <div class="card">
                 <div class="card-header">
-                    <h2 class="card-title">🏥 Portfolio Health Dashboard</h2>
+                    <h2 class="card-title">Portfolio Health Dashboard</h2>
                     <div style="display: flex; gap: 1rem; align-items: center;">
                         <select class="form-control" style="max-width: 200px;">
                             <option>All Companies</option>
@@ -1021,7 +1076,7 @@
                     </div>
                 </div>
 
-                <h3 style="margin: 1.5rem 0 1rem; color: var(--danger); font-size: 1rem;">🚨 Top Priority - Needs Attention</h3>
+                <h3 style="margin: 1.5rem 0 1rem; color: var(--danger); font-size: 1rem;">Top Priority - Needs Attention</h3>
                 <div class="grid grid-2">
                     <div class="card" style="border-left: 4px solid var(--danger);">
                         <div style="display: flex; gap: 1rem; align-items: start;">
@@ -1061,7 +1116,7 @@
                     </div>
                 </div>
 
-                <h3 style="margin: 2rem 0 1rem; color: var(--success); font-size: 1rem;">🎉 Top Performers</h3>
+                <h3 style="margin: 2rem 0 1rem; color: var(--success); font-size: 1rem;">Top Performers</h3>
                 <div class="grid grid-3">
                     <div class="card" style="border-left: 4px solid var(--success);">
                         <div class="health-score">
@@ -1072,7 +1127,7 @@
                             </div>
                         </div>
                         <p style="margin-top: 1rem; font-size: 0.9rem;"><strong>ARR:</strong> $3.2M (+45% MoM)</p>
-                        <span class="badge badge-success" style="margin-top: 0.5rem;">Growth 2.1 SD above mean 🚀</span>
+                        <span class="badge badge-success" style="margin-top: 0.5rem;">Growth 2.1 SD above mean</span>
                     </div>
 
                     <div class="card" style="border-left: 4px solid var(--success);">
@@ -1084,7 +1139,7 @@
                             </div>
                         </div>
                         <p style="margin-top: 1rem; font-size: 0.9rem;"><strong>ARR:</strong> $8.5M (+32% MoM)</p>
-                        <span class="badge badge-success" style="margin-top: 0.5rem;">Just closed $15M Series A 🎊</span>
+                        <span class="badge badge-success" style="margin-top: 0.5rem;">Just closed $15M Series A</span>
                     </div>
 
                     <div class="card" style="border-left: 4px solid var(--success);">
@@ -1096,11 +1151,11 @@
                             </div>
                         </div>
                         <p style="margin-top: 1rem; font-size: 0.9rem;"><strong>ARR:</strong> $1.8M (+28% MoM)</p>
-                        <span class="badge badge-success" style="margin-top: 0.5rem;">Hit profitability ✨</span>
+                        <span class="badge badge-success" style="margin-top: 0.5rem;">Hit profitability</span>
                     </div>
                 </div>
 
-                <h3 style="margin: 2rem 0 1rem; color: var(--text-secondary); font-size: 1rem;">📊 All Portfolio Companies</h3>
+                <h3 style="margin: 2rem 0 1rem; color: var(--text-secondary); font-size: 1rem;">All Portfolio Companies</h3>
                 <div class="company-grid">
                     <div class="company-tile">
                         <div class="company-logo">TF</div>
@@ -1177,7 +1232,7 @@
 
         function submitRequest(event) {
             event.preventDefault();
-            alert('Request submitted successfully! ✅\n\nThe Norte team will review your request and respond within 24 hours.');
+            alert('Request submitted successfully.\n\nThe Norte team will review your request and respond within 24 hours.');
             event.target.reset();
         }
 
